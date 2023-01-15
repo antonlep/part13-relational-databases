@@ -52,6 +52,38 @@ app.post("/api/blogs", async (req, res) => {
   }
 })
 
+app.get("/api/blogs/:id", async (req, res) => {
+  const blog = await Blog.findByPk(req.params.id)
+  if (blog) {
+    res.json(blog)
+  } else {
+    res.status(404).end()
+  }
+})
+
+app.delete("/api/blogs/:id", async (req, res) => {
+  const blog = await Blog.findByPk(req.params.id)
+  if (blog) {
+    blog.destroy()
+  } else {
+    res.status(404).end()
+  }
+})
+
+app.put("/api/blogs/:id", async (req, res) => {
+  const blog = await Blog.findByPk(req.params.id)
+  if (blog) {
+    blog.author = req.body.author
+    blog.url = req.body.url
+    blog.title = req.body.title
+    blog.likes = req.body.likes
+    await blog.save()
+    res.json(blog)
+  } else {
+    res.status(404).end()
+  }
+})
+
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
