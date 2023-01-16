@@ -1,9 +1,6 @@
-PUT http://localhost:3001/api/blogs/3
+PUT http://localhost:3001/api/blogs/1
 Content-Type: application/json
 
 {
-    "author": "goo3gl3e2224",
-    "url": "www",
-    "title": "aaa",
-    "likes": 1
+    "likes": 100
 }
