@@ -6,9 +6,17 @@ const { connectToDatabase } = require("./util/db")
 
 const blogsRouter = require("./controllers/blogs")
 
+const errorHandler = (error, request, response, next) => {
+  console.error(error.message)
+
+  return response.status(400).send({ error: "some error" })
+}
+
 app.use(express.json())
 
 app.use("/api/blogs", blogsRouter)
+
+app.use(errorHandler)
 
 const start = async () => {
   await connectToDatabase()
