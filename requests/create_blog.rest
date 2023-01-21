@@ -1,5 +1,6 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lMUBnb29nbGUuZmkiLCJpZCI6MiwiaWF0IjoxNjc0MzE5NzA0fQ.Q3kwcbWeJ9-6K4QQC43y46luQgpVc_MiFXwmfRwVyu4
 
 {
     "author": "goo3gl3e2224",
