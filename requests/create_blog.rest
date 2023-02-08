@@ -1,0 +1,9 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lMUBnb29nbGUuZmkiLCJpZCI6MSwiaWF0IjoxNjc1Nzk4NjU2fQ.Fjk-ctUCABr8-0RCq1zcqm9e-qcuixFeu3hXxc8RfPQ
+
+{
+    "url": "user1@google.fi",
+    "title": "username1@google.fi",
+    "year": 2000
+}

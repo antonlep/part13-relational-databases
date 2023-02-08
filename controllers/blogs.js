@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
 const router = require("express").Router()
 
-const { Blog, User } = require("../models")
+const { Blog, User, Session } = require("../models")
 const { SECRET } = require("../util/config")
 const { Op } = require("sequelize")
 
@@ -60,6 +60,13 @@ router.get("/", async (req, res) => {
 
 router.post("/", tokenExtractor, async (req, res, next) => {
   const user = await User.findByPk(req.decodedToken.id)
+  const authorization = req.get('authorization')
+  const originalToken = authorization.substring(7)
+  const tokens = await Session.findAll({where: {userId: req.decodedToken.id}})
+  const tokenlist = tokens.map(obj => obj.dataValues.token) 
+  if (!tokenlist.includes(originalToken)) {
+    return res.status(400).json("unauthorized")
+  }
   await Blog.create({
     ...req.body,
     userId: user.id,
